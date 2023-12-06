@@ -48,8 +48,26 @@ namespace DevMVCApp.Controllers
 
         // ~/home/empinstagrampage?empid=
         public ActionResult EmpInstagramPage(int EmpId) {
-            string igUrl = "https://www.instagram.com/emp" + EmpId;
-            return Redirect(igUrl);
+            var employees = new[] {
+                new { EmpId = 1, EmpName = "Scott", Salary = 8000 },
+                new { EmpId = 2, EmpName = "Smith", Salary = 2540 },
+                new { EmpId = 3, EmpName = "Allen", Salary = 9400 }
+            };
+
+            string igUrl = null;
+            foreach (var item in employees)
+            {
+                if (item.EmpId == EmpId)
+                {
+                    igUrl = "https://www.instagram.com/emp" + EmpId;
+                }
+            }
+
+            if(igUrl == null) {
+                return Content("Invalid Employee Id");
+            } else {
+                return Redirect(igUrl);
+            } 
         }
 
     }
