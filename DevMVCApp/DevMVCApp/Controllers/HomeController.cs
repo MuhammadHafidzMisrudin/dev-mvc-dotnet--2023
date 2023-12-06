@@ -21,6 +21,7 @@ namespace DevMVCApp.Controllers
             return View("Contact"); 
         }
 
+        // ~/home/getempname?empid=
         public ActionResult GetEmpName(int EmpId) {
             var employees = new[] {
                 new { EmpId = 1, EmpName = "Scott", Salary = 8000 },
@@ -38,5 +39,18 @@ namespace DevMVCApp.Controllers
             // return View();
             return Content(matchName, "text/plain");
         }
+
+        // ~/home/getpayslip?empid=
+        public ActionResult GetPaySlip(int EmpId) {
+            string fileName = "~/PaySlip" + EmpId + ".pdf";
+            return File(fileName, "application/pdf");
+        }
+
+        // ~/home/empinstagrampage?empid=
+        public ActionResult EmpInstagramPage(int EmpId) {
+            string igUrl = "https://www.instagram.com/emp" + EmpId;
+            return Redirect(igUrl);
+        }
+
     }
 }
